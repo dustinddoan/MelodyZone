@@ -5,6 +5,8 @@ const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const routes = require('./routes');
 const { handleError, convertToApiError } = require('./middleware/apiError');
+const passport = require('passport');
+const { jwtStrategy } = require('./middleware/passport');
 
 require('dotenv').config();
 
@@ -20,6 +22,10 @@ app.use(express.json())
 app.use(xss());
 app.use(mongoSanitize());
 
+// passport
+app.use(passport.initialize())
+passport.use('jwt', jwtStrategy);
+
 // routes
 app.use('/api', routes)
 
@@ -28,8 +34,6 @@ app.use('/api', routes)
 app.use(convertToApiError)
 
 app.use((err, req, res, next) => {
-    console.log('DUSTIN err: ', err)
-    console.log('DUSTIN res: ', res)
     handleError(err, res)
 })
 
