@@ -78,6 +78,14 @@ userSchema.methods.generateAuthToken = function() {
     return token;
 }
 
+userSchema.methods.generateRegisterToken = function() {
+    let user = this;
+    const userObj = {sub: user._id.toHexString()};
+    const token = jwt.sign(userObj, process.env.DB_SECRET, {expiresIn: '10h'});
+
+    return token;
+}
+
 // check if email already taken before create a new user
 userSchema.statics.emailTaken = async function(email) {
     const user = await this.findOne({email});
