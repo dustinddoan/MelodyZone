@@ -21,8 +21,6 @@ const verify = (req, res, resolve, reject, rights) => async(err, user) => {
         }
 
         res.locals.permission = permission;
-        console.log('DUSTIN permission upper1: ', permission)
-
     }
 
     req.user = user;
@@ -32,7 +30,6 @@ const verify = (req, res, resolve, reject, rights) => async(err, user) => {
 
 
 const auth = (...rights) => async(req, res, next) => {
-    console.log('DUSTIN rights: ', rights)
     return new Promise((resolve, reject) => {
         passport.authenticate('jwt', {session:false}, verify(req, res, resolve, reject, rights))(req, res, next)
     })

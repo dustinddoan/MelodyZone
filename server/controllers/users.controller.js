@@ -53,8 +53,6 @@ const usersController = {
     async verifyAccount(req, res, next) {
         try {
             const token = await userService.validateToken(req.query.validation);
-            console.log('DUSTIN token: ', token)
-            console.log('DUSTIN token: ', token.sub)
             const user = await userService.findUserById(token.sub);
 
             if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');

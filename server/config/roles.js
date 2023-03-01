@@ -10,14 +10,17 @@ const allRights = {
 let grantsObject = {
     admin:{
         profile: allRights, // this is route /api/user/profile
-        brand: allRights
+        brand: allRights,
+        product: allRights
     },
     user:{
         profile: {
             'read:own': ['*', '!password', '!_id'],
             'update:own': ['*']
         },
-        brand: {'read:any': ['*']}
+        brand: {'read:any': ['*']},
+        product: {'read:any': ['*']}
+
     }
 }
 
