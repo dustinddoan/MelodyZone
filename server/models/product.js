@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 
 const productSchema = Schema({
     model: {
@@ -54,6 +55,10 @@ const productSchema = Schema({
         default: Date.now
     }
 });
+
+
+// pagination
+productSchema.plugin(aggregatePaginate);
 
 const Product =  mongoose.model('Product', productSchema);
 
