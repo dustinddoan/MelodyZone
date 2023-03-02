@@ -1,10 +1,47 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-    return(
-        <>
-            Header
-        </>
+    return (
+        <header className='bck_b_light'>
+            <div className='container'>
+                <div className='left'>
+                    <div className='logo'>
+                        WAVES
+                    </div>
+
+                </div>
+                <div className='right'>
+                    <div className='top'>
+                        <>
+                            <div className='cart_link'>
+                                <span>0</span>
+                                <Link to='/dashbaord/user/user_cart'>
+                                    My cart
+                                </Link>
+                            </div>
+                            <Link to='/dashbaord'>
+                                My account
+                            </Link>
+                            <span onClick={() => alert('Log out')}>
+                                Log out
+                            </span>
+                            <Link to='/sign_in'>
+                                Log in
+                            </Link>
+                        </>
+                    </div>
+                    <div className='bottom'>
+                        <Link to='/'>
+                            Home
+                        </Link>
+                        <Link to='/shop'>
+                            Shop
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </header>
     )
 }
 
