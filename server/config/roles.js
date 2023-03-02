@@ -11,7 +11,8 @@ let grantsObject = {
     admin:{
         profile: allRights, // this is route /api/user/profile
         brand: allRights,
-        product: allRights
+        product: allRights,
+        site: allRights
     },
     user:{
         profile: {
