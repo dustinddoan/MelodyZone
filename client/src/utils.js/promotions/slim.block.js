@@ -2,7 +2,6 @@ import React from "react";
 import { WavesButton } from "utils.js/tools";
 
 export const SlimPromotion = ({items}) => {
-    console.log('DUSTIN items: ', items)
     const renderPromotion = () => (
         items ?
         <div className="slim_promotion_img"
