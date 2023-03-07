@@ -5,6 +5,9 @@ import Featured from './featured';
 import { useDispatch, useSelector } from 'react-redux';
 import {productsBySort} from 'store/actions/product.action'
 
+import CardBlock from 'utils.js/product/card.block';
+import Loader from 'utils.js/loader';
+
 const slimPromotion = {
     img: '/images/featured/featured_home_3.jpg',
     lineOne: 'Up to 40% off',
@@ -44,7 +47,22 @@ const Home = () => {
     return(
        <div>
             <Featured/>
+
+            { bySold ?
+                <CardBlock 
+                    items = {bySold}
+                    title = "Best Selling Guitars"
+                />
+            : <Loader/> }
+
             <SlimPromotion items={slimPromotion}/>
+
+            { byDate ?
+                <CardBlock 
+                    items = {byDate}
+                    title = "Lastest guitars model"
+                />
+            : <Loader/> }
        </div>
     )
 }
