@@ -4,7 +4,7 @@ import {
 } from '../types'
 
 export default function productsReducer(state={}, action) {
-    console.log('Productd reducers actin.type retrun update state => app reducer')
+    console.log('Productd reducers actin.type retrun update state => app reducer');
     switch(action.type) {
         case GET_PROD_BY_SOLD:
             return {...state, bySold: action.payload}

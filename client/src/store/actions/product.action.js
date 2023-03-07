@@ -25,25 +25,9 @@ export const  productsBySort = ({limit, sortBy, order, where}) => {
                     return false;
             }
         } catch (error) {
-            console.log(error)
+            dispatch(actions.errorGlobal("Sorry, request failed, try again!"))
         }
     }
    
 }
 
-export const  productsByDate = ({limit, sortBy, order}) => {
-    return async(dispatch) => {
-        try {
-            const products = await axios.get(`/api/products/all`, {
-                limit,
-                sortBy,
-                order,
-            })
-            
-            dispatch(actions.productsByDate(products.data))
-        } catch (error) {
-            console.log(error)
-        }
-    }
-   
-}
