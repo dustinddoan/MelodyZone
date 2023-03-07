@@ -5,6 +5,7 @@ import appReducers from './reducers/index.js';
 
 const ReduxStore = () => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    console.log('Create ReduxStore with appReducers')
     const store = createStore(
         // reducers
         appReducers,

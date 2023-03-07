@@ -2,15 +2,20 @@ import axios from "axios"
 import * as actions from './index'
 
 export const  productsBySort = ({limit, sortBy, order, where}) => {
+    console.log('Product action')
     return async(dispatch) => {
         try {
             const products = await axios.get(`/api/products/all`, {
-                limit,
-                sortBy,
-                order,
+                params: {
+                    limit,
+                    sortBy,
+                    order,
+                }
+               
             })
             switch(where) {
                 case 'bySold':
+                    console.log('Dispatch actions.productsBySold = type PROD_BY_SOLD')
                     dispatch(actions.productsBySold(products.data))
                     break;
                 case 'byDate':  
