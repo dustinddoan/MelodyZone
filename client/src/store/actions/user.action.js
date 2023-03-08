@@ -52,3 +52,12 @@ export const userIsAuth = () => {
         }
     }
 }
+
+
+export const userSignOut = () => {
+    return async(dispatch) => {
+        removeTokenCokie();
+        dispatch(actions.userSignOut())
+        dispatch(actions.successGlobal('Goodbye'))
+    }
+}

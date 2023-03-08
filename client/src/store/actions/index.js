@@ -4,7 +4,8 @@ import {
     SUCCESS_GLOBAL,
     ERROR_GLOBAL,
     CLEAR_NOTIFICATION,
-    AUTH_USER
+    AUTH_USER,
+    USER_SIGNOUT
 
 } from "store/types";
 
@@ -12,6 +13,10 @@ import {
 export const userAuthenticate = (user) => ({
     type: AUTH_USER,
     payload: user
+})
+
+export const userSignOut = () => ({
+    type: USER_SIGNOUT
 })
 
 

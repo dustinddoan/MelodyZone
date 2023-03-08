@@ -8,7 +8,7 @@ import RegisterLogin from 'components/auth';
 
 import Loader from 'utils.js/loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { userIsAuth } from 'store/actions/user.action';
+import { userIsAuth, userSignOut } from 'store/actions/user.action';
 // Using Routes instead of Switch in react-router v6
 // You are using react-router-dom version 6, which replaced Switch with the Routes component
 
@@ -16,6 +16,10 @@ const Router = (props) => {
   const [loading, setLoading] = useState(true);
   const users = useSelector(state => state.users);
   const dispatch = useDispatch();
+
+  const signOutUser = () => {
+    dispatch(userSignOut())
+  }
 
   useEffect(() => {
     dispatch(userIsAuth())
@@ -33,7 +37,10 @@ const Router = (props) => {
 
         :
         <>
-          <Header />
+          <Header
+            users={users} 
+            signOutUser={signOutUser}
+          />
           <MainLayout>
             <Routes>
               <Route path="sign_in" element={<RegisterLogin />} />
