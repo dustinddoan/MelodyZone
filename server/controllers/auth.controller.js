@@ -11,6 +11,8 @@ const authController = {
             const user = await authService.createUser(email, password);
             const token = await authService.genAuthToken(user);
 
+            console.log('user, ', user)
+
             // send register email
 
             await emailService.registerEmail(email, user);

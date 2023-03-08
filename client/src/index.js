@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Routes from './routes';
+import Router from './router';
 import 'resources/styles/styles.css'
 import { Provider } from 'react-redux';
 import ReduxStore from 'store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-console.log('Render root with Provider store=ReduxStore')
+// console.log('Render root with Provider store=ReduxStore')
 root.render(
   <React.StrictMode>
     <Provider store={ReduxStore()}>
-      <Routes />
+      <Router />
     </Provider>
   </React.StrictMode>
 );

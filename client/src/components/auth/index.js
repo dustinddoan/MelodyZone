@@ -3,10 +3,12 @@ import { Button } from "@mui/material";
 import AuthForm from "./authForm";
 
 const RegisterLogin = (props) => {
+    console.log('RegisterLogin props: ', props)
     const [formType, setFormType] = useState(false);
     
     const toggleFormType = () => {
         setFormType(!formType);
+
     }
 
 
@@ -34,7 +36,6 @@ const RegisterLogin = (props) => {
                             size="small"
                             onClick={() => toggleFormType()}
                         >
-                            {console.log('formtype: ', formType)}
                             { formType ? "Already registered?" : "Need to register"}
                         </Button>
 

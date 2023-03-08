@@ -25,7 +25,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('Home dispatch:')
+        // console.log('Home dispatch:')
         dispatch(productsBySort({
             limit: 4,
             sortBy: 'itemSold',
@@ -41,8 +41,6 @@ const Home = () => {
         }));
     }, [dispatch])
 
-    console.log('bySold: ', bySold);
-    console.log('byDate: ', byDate);
 
     return(
        <div>

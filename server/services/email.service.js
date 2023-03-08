@@ -3,7 +3,9 @@ const Mailgen = require('mailgen');
 require('dotenv').config();
 
 let transponder = nodemailer.createTransport({
-    service: 'Gmail',
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 456,
     secure: true,
     auth: {
         user: process.env.EMAIL,
@@ -13,14 +15,12 @@ let transponder = nodemailer.createTransport({
 
 const registerEmail = async(userEmail, user) => {
     try {
-        console.log('DUSTIN userEmail:', userEmail)
-        console.log('DUSTIN user:', user)
         const emailToken = user.generateRegisterToken();
 
         let mailGenerator = new Mailgen({
             theme: "default",
             product: {
-                name: "eBike",
+                name: "waves",
                 link: `${process.env.EMAIL_MAIL_URL}`
             }
         })
@@ -48,6 +48,8 @@ const registerEmail = async(userEmail, user) => {
             subject: 'Welcome to eBike',
             html: emailBody
         }
+        // console.log('DUSTIN message:', message)
+
 
         await transponder.sendMail(message);
         return true;

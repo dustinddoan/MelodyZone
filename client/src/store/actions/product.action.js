@@ -2,7 +2,7 @@ import axios from "axios"
 import * as actions from './index'
 
 export const  productsBySort = ({limit, sortBy, order, where}) => {
-    console.log('Product action')
+    // console.log('Product action')
     return async(dispatch) => {
         try {
             const products = await axios.get(`/api/products/all`, {
@@ -15,7 +15,7 @@ export const  productsBySort = ({limit, sortBy, order, where}) => {
             })
             switch(where) {
                 case 'bySold':
-                    console.log('Dispatch actions.productsBySold = type PROD_BY_SOLD')
+                    // console.log('Dispatch actions.productsBySold = type PROD_BY_SOLD')
                     dispatch(actions.productsBySold(products.data))
                     break;
                 case 'byDate':  
@@ -25,7 +25,7 @@ export const  productsBySort = ({limit, sortBy, order, where}) => {
                     return false;
             }
         } catch (error) {
-            dispatch(actions.errorGlobal("Sorry, request failed, try again!"))
+            dispatch(actions.errorGlobal(error.response.data.message))
         }
     }
    
