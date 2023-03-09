@@ -5,7 +5,8 @@ import {
     ERROR_GLOBAL,
     CLEAR_NOTIFICATION,
     AUTH_USER,
-    USER_SIGNOUT
+    USER_SIGNOUT,
+    GET_PRODUCT_PAGINATE
 
 } from "store/types";
 
@@ -29,6 +30,11 @@ export const productsBySold = (data) => ({
 export const productsByDate = (data) => ({
     type: GET_PROD_BY_DATE,
     payload: data
+})
+
+export const productsByPaginate = (products) => ({
+    type: GET_PRODUCT_PAGINATE,
+    payload: products
 })
 
 // NOTIFICATIONS

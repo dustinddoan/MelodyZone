@@ -31,3 +31,15 @@ export const  productsBySort = ({limit, sortBy, order, where}) => {
    
 }
 
+export const productsByPaginate = (args) => {
+    return async(dispatch) => {
+        try {
+            const products = await axios.post('/api/products/paginate/all', args)
+            // console.log('products: ', products.data.docs)
+            dispatch(actions.productsByPaginate(products.data.docs));
+            
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}

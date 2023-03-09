@@ -1,6 +1,7 @@
 import {
     GET_PROD_BY_SOLD,
-    GET_PROD_BY_DATE
+    GET_PROD_BY_DATE,
+    GET_PRODUCT_PAGINATE
 } from '../types'
 
 export default function productsReducer(state={}, action) {
@@ -9,6 +10,8 @@ export default function productsReducer(state={}, action) {
             return {...state, bySold: action.payload}
         case GET_PROD_BY_DATE:
             return {...state, byDate: action.payload}
+        case GET_PRODUCT_PAGINATE:
+            return {...state, byPaginate: action.payload}
         default: 
             return state
     }
