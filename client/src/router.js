@@ -6,10 +6,10 @@ import Footer from 'components/navigation/footer';
 import Home from 'components/home';
 import RegisterLogin from 'components/auth';
 import DashBoard from 'components/dashboard';
-
 import Loader from 'utils.js/loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { userIsAuth, userSignOut } from 'store/actions/user.action';
+import AuthGuard from './components/hoc/authGuard'
 // Using Routes instead of Switch in react-router v6
 // You are using react-router-dom version 6, which replaced Switch with the Routes component
 
@@ -44,9 +44,9 @@ const Router = (props) => {
           />
           <MainLayout>
             <Routes>
-              <Route path="sign_in" element={<RegisterLogin />} />
+              <Route path="/dashboard" element={<AuthGuard requiredToken={true}><DashBoard/></AuthGuard>} />
+              <Route path="/sign_in" element={<RegisterLogin />} />
               <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<DashBoard />} />
             </Routes>
           </MainLayout>
           <Footer />
