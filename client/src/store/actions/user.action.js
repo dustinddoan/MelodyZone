@@ -45,7 +45,6 @@ export const userIsAuth = () => {
             
             
             const user = await axios.get('/api/auth/isauth', getAuthHeader())
-            console.log('isauth: ', user)
             dispatch(actions.userAuthenticate({data:user.data, auth: true}))
         } catch (error) {
             dispatch(actions.userAuthenticate({data:{}, auth: false}))

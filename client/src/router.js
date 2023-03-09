@@ -5,6 +5,7 @@ import Header from 'components/navigation/header';
 import Footer from 'components/navigation/footer';
 import Home from 'components/home';
 import RegisterLogin from 'components/auth';
+import DashBoard from 'components/dashboard';
 
 import Loader from 'utils.js/loader';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,6 +46,7 @@ const Router = (props) => {
             <Routes>
               <Route path="sign_in" element={<RegisterLogin />} />
               <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<DashBoard />} />
             </Routes>
           </MainLayout>
           <Footer />
