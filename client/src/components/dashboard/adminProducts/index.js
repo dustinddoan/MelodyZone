@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import DashboardLayout from "components/hoc/dashboardLayout";
 import { useDispatch, use, useSelector } from "react-redux";
 import { productsByPaginate } from "store/actions/product.action";
+import ProductsTable from "./productsTable";
 
 const defaultValues = {
     page: 1,
@@ -17,17 +18,41 @@ const AdminProducts = (props) => {
     const notifications = useSelector(state => state.notifications);
     const dispatch = useDispatch();
 
-    const [searchValues, setSearchValues] = useReducer(
-        (state, newState) => ({...state, newState}),
-        defaultValues
-    )
+    const reducer = (state, newSate) => ({
+        ...state,
+        ...newSate
+    })
+
+    const [searchValues, setSearchValues] = useReducer(reducer,defaultValues);
+    // const [searchValues, setSearchValues] = useReducer(
+    //     (state, newState) => ({...state, ...newState}),
+    //     defaultValues
+    // )
+
+    const goToPage = (page) => {
+        setSearchValues({page})
+    }
+
 
     useEffect(() => {
         dispatch(productsByPaginate(searchValues))
-    }, [dispatch])
+    }, [dispatch, searchValues]);
+
+    
     
     return (
-        <DashboardLayout>
+        <DashboardLayout title="Products">
+            <div className="products_table">
+                <div>
+                    search
+                </div>
+                <hr/>
+                <ProductsTable 
+                    prods={products.byPaginate}
+                    prev={(page) => goToPage(page)}
+                    next={(page) => goToPage(page)}
+                />
+            </div>
             products
         </DashboardLayout>
     )

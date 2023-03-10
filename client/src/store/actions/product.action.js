@@ -36,7 +36,7 @@ export const productsByPaginate = (args) => {
         try {
             const products = await axios.post('/api/products/paginate/all', args)
             // console.log('products: ', products.data.docs)
-            dispatch(actions.productsByPaginate(products.data.docs));
+            dispatch(actions.productsByPaginate(products.data));
             
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
