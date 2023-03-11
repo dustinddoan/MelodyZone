@@ -6,7 +6,8 @@ import {
     CLEAR_NOTIFICATION,
     AUTH_USER,
     USER_SIGNOUT,
-    GET_PRODUCT_PAGINATE
+    GET_PRODUCT_PAGINATE,
+    REMOVE_PRODUCT
 
 } from "store/types";
 
@@ -35,6 +36,10 @@ export const productsByDate = (data) => ({
 export const productsByPaginate = (products) => ({
     type: GET_PRODUCT_PAGINATE,
     payload: products
+})
+
+export const removeProduct = () => ({
+    type: REMOVE_PRODUCT
 })
 
 // NOTIFICATIONS

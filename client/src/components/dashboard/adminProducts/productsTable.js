@@ -1,11 +1,11 @@
 import React from "react";
-import { Table, Pagination, Modal, Button } from "react-bootstrap";
+import { Table, Pagination, Modal, Button, ModalBody, ModalFooter } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 import Loader from "utils.js/loader";
 
-const ProductsTable = ({prods, prev, next}) => {
+const ProductsTable = ({prods, prev, next, removeModal, handleClose, handleModal, handleRemove}) => {
     const navigate = useNavigate();
     const goToPrevPage = (page) => {
         prev(page);
@@ -21,7 +21,7 @@ const ProductsTable = ({prods, prev, next}) => {
 
     return (
         <>
-            { prods ?
+            { (prods && (prods.docs.length > 0)) ?
                 <>
                     <Table striped bordered hover>
                         <thead>
@@ -38,7 +38,7 @@ const ProductsTable = ({prods, prev, next}) => {
                                     <td>{item.model}</td>
                                     <td>{item.available}</td>
                                     <td className="action_btn remove_btn"
-                                        onClick={() => alert('Removed')}
+                                        onClick={() => handleModal(item._id)}
                                     >
                                         Remove
                                     </td>
@@ -83,6 +83,23 @@ const ProductsTable = ({prods, prev, next}) => {
                 :
                 <Loader/>
             }
+            <Modal show={removeModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Are you sure?</Modal.Title>
+                </Modal.Header>
+                <ModalBody>
+                    There is no going back
+                </ModalBody>
+                <ModalFooter>
+                    <Button variant="secondary" onClick={() => handleClose()}>
+                        Opp, close this now
+                    </Button>
+                    <Button variant="danger" onClick={() => handleRemove()}>
+                        Delete
+                    </Button>
+                </ModalFooter>
+
+            </Modal>
         </>
     )
 }

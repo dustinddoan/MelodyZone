@@ -1,7 +1,7 @@
 import {
     GET_PROD_BY_SOLD,
     GET_PROD_BY_DATE,
-    GET_PRODUCT_PAGINATE
+    GET_PRODUCT_PAGINATE,
 } from '../types'
 
 export default function productsReducer(state={}, action) {

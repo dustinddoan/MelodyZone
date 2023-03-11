@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useSelector } from "react-redux"
 import Loader from "utils.js/loader"
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 // export default function authGuard(){
