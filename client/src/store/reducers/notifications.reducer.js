@@ -9,7 +9,6 @@ export default function notificationsReducer(state={}, action) {
         case CLEAR_NOTIFICATION:
             return {};
         case REMOVE_PRODUCT:
-            console.log('notification reducer')
             return {...state, removeProduct: true}
         default: 
             return state

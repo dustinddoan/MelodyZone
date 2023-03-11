@@ -7,7 +7,9 @@ import {
     AUTH_USER,
     USER_SIGNOUT,
     GET_PRODUCT_PAGINATE,
-    REMOVE_PRODUCT
+    REMOVE_PRODUCT,
+    GET_ALL_BRANDS,
+    ADD_PRODUCT
 
 } from "store/types";
 
@@ -42,6 +44,11 @@ export const removeProduct = () => ({
     type: REMOVE_PRODUCT
 })
 
+export const addProduct = (product) => ({
+    type: ADD_PRODUCT,
+    payload: product
+})
+
 // NOTIFICATIONS
 export const successGlobal = (msg) => ({
     type: SUCCESS_GLOBAL,
@@ -60,3 +67,10 @@ export const clearNotification  = () => {
         })
     }
 }
+
+// BRANDS
+
+export const getAllBrands = (brands) => ({
+    type: GET_ALL_BRANDS,
+    payload: brands
+})

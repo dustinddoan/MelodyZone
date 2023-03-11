@@ -118,7 +118,6 @@ const AdminProducts = (props) => {
                     handleRemove={() => handleRemove()}
                 />
             </div>
-            products
         </DashboardLayout>
     )
 }

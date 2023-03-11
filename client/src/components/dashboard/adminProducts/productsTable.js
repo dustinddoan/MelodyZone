@@ -76,7 +76,7 @@ const ProductsTable = ({prods, prev, next, removeModal, handleClose, handleModal
                         }
                     </Pagination>
                     <hr/>
-                    <LinkContainer to="/dashboard/admin/add_product">
+                    <LinkContainer to="/dashboard/admin/add_products">
                         <Button variant="secondary">Add product</Button>
                     </LinkContainer>
                 </>

@@ -46,7 +46,6 @@ export const productsByPaginate = (args) => {
 }
 
 export const removeProduct = (productId) => {
-    console.log('productId: ', productId)
 
     return async(dispatch) => {
         try {
@@ -54,6 +53,18 @@ export const removeProduct = (productId) => {
             dispatch(actions.removeProduct());
             dispatch(actions.successGlobal())
             
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
+export const addProduct = (args) => {
+    return async(dispatch) => {
+        try {
+            const product = await axios.post('/api/products', args,getAuthHeader())
+            dispatch(actions.addProduct(product.data))
+            dispatch(actions.successGlobal())
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
         }
