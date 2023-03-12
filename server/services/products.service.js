@@ -2,6 +2,14 @@ const { Product } = require("../models/product")
 const { ApiError } = require('../middleware/apiError');
 const httpStatus = require('http-status');
 const mongoose = require('mongoose');
+const cloudinary = require('cloudinary').v2
+require('dotenv').config
+
+cloudinary.config({
+    cloud_name:'dtboetp4o',
+    api_key: '583551269677131',
+    api_secret: `${process.env.CLOUDINARY_SECRET}`
+})
 
 const addProduct = async(body) => {
     try {
@@ -159,11 +167,27 @@ const paginateProducts = async(req) => {
     }
 }
 
+const picUpload = async(req) => {
+    try {
+        const upload = await cloudinary.uploader.upload(req.files.file.path,{
+            public_id: `${Date.now()}`,
+            folder: 'ebike_upload'
+        })
+        return {
+            public_id: upload.public_id,
+            url: upload.url
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     addProduct,
     getProductById,
     updateProductById,
     deleteProductById,
     getAllProducts,
-    paginateProducts
+    paginateProducts,
+    picUpload
 }

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { validation } from "./formValue";
 import { getAllBrands } from "store/actions/brands.action";
 import { addProduct } from "store/actions/product.action";
+import ImageUpload from "./uploadImages";
+import PicViewer from "./picViewer";
 import {
     TextField,
     Button,
@@ -35,7 +37,8 @@ const AddProduct = (props) => {
             description: '',
             price: '',
             available: '',
-            shipping: false
+            shipping: false,
+            images: []
         },
         validationSchema: validation,
         onSubmit: (values) => {
@@ -46,6 +49,19 @@ const AddProduct = (props) => {
     const handleSubmit = (values) => {
         setLoading(true);
         dispatch(addProduct(values))
+    }
+
+    const handlePicValue = (pic) => {
+        const picArray = formik.values.images;
+        picArray.push(pic.url);
+        formik.setFieldValue('images', picArray)
+    }
+
+    const handleDeletePic = (i) => {
+
+        const picArray = formik.values.images;
+        picArray.splice(i, 1)
+        formik.setFieldValue('images', picArray)
     }
 
     useEffect(() => {
@@ -66,6 +82,14 @@ const AddProduct = (props) => {
                 <Loader />
                 :
                 <>
+                    <PicViewer
+                        formik={formik}
+                        deletePic={(i) => handleDeletePic(i)}
+                    />
+                    <ImageUpload 
+                        picValue={pic => handlePicValue(pic)}
+                    />
+                    <Divider className="mt-3 mb-3" />
                     <form className="mt-3 article_form" onSubmit={formik.handleSubmit}>
                         <div className="form-group">
                             <TextField

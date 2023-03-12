@@ -17,11 +17,11 @@ const Header = ({ users, signOutUser }) => {
                             <>
                                 <div className='cart_link'>
                                     <span>0</span>
-                                    <Link to='/dashbaord/user/user_cart'>
+                                    <Link to='/dashboard/user/user_cart'>
                                         My cart
                                     </Link>
                                 </div>
-                                <Link to='/dashbaord'>
+                                <Link to='/dashboard'>
                                     My account
                                 </Link>
                                 <span onClick={() => signOutUser()}>

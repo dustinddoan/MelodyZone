@@ -3,7 +3,9 @@ const {productsService} = require('../services');
 const productsController = {
     async addProduct(req, res, next) {
         try {
+
             const product  = await productsService.addProduct(req.body);
+
             res.json(product);
         } catch (error) {
             next(error)
@@ -30,7 +32,7 @@ const productsController = {
     async deleteProduct(req, res, next) {
         try {
             const product = await productsService.deleteProductById(req.params.id);
-            
+
             res.json(product);
         } catch (error) {
             next(error)
@@ -50,6 +52,14 @@ const productsController = {
             const products = await productsService.paginateProducts(req);
             
             res.json(products);
+        } catch (error) {
+            next(error)
+        }   
+    },
+    async picUpload(req, res, next) {
+        try {
+            const pic = await productsService.picUpload(req);
+            res.json(pic)
         } catch (error) {
             next(error)
         }
