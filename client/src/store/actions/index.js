@@ -9,7 +9,9 @@ import {
     GET_PRODUCT_PAGINATE,
     REMOVE_PRODUCT,
     GET_ALL_BRANDS,
-    ADD_PRODUCT
+    ADD_PRODUCT,
+    GET_PRODUCT_BY_ID,
+    CLEAR_EDIT_PRODUCT
 
 } from "store/types";
 
@@ -47,6 +49,15 @@ export const removeProduct = () => ({
 export const addProduct = (product) => ({
     type: ADD_PRODUCT,
     payload: product
+})
+
+export const getProductById = (product) =>({
+    type: GET_PRODUCT_BY_ID,
+    payload: product
+})
+
+export const clearEditProdcut = () => ({
+    type: CLEAR_EDIT_PRODUCT
 })
 
 // NOTIFICATIONS

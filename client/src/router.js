@@ -12,6 +12,7 @@ import { userIsAuth, userSignOut } from 'store/actions/user.action';
 import AuthGuard from './components/hoc/authGuard'
 import AdminProducts from 'components/dashboard/adminProducts';
 import AddProduct from 'components/dashboard/adminProducts/addEditProduct/addProduct';
+import EditProduct from 'components/dashboard/adminProducts/addEditProduct/editProduct';
 // Using Routes instead of Switch in react-router v6
 // You are using react-router-dom version 6, which replaced Switch with the Routes component
 
@@ -30,7 +31,7 @@ const Router = (props) => {
 
   useEffect(() => {
     if (users.auth !== null) setLoading(false)
-  },[users])
+  }, [users])
 
 
   return (
@@ -41,16 +42,17 @@ const Router = (props) => {
         :
         <>
           <Header
-            users={users} 
+            users={users}
             signOutUser={signOutUser}
           />
           <MainLayout>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard/admin/admin_products" element={<AuthGuard requiredToken={true}><AdminProducts users={users}/></AuthGuard>} />
-              <Route path="/dashboard/admin/add_products" element={<AuthGuard requiredToken={true}><AddProduct users={users}/></AuthGuard>} />
-              <Route path="/dashboard" element={<AuthGuard requiredToken={true}><DashBoard users={users}/></AuthGuard>} />
+              <Route path="/dashboard/admin/add_product" element={<AuthGuard requiredToken={true}><AddProduct users={users} /></AuthGuard>} />
+              <Route path="/dashboard/admin/edit_product/:id" element={<AuthGuard requiredToken={true}><EditProduct users={users} /></AuthGuard>} />
+              <Route path="/dashboard/admin/admin_products" element={<AuthGuard requiredToken={true}><AdminProducts users={users} /></AuthGuard>} />
+              <Route path="/dashboard" element={<AuthGuard requiredToken={true}><DashBoard users={users} /></AuthGuard>} />
               <Route path="/sign_in" element={<RegisterLogin />} />
+              <Route path="/" element={<Home />} />
             </Routes>
           </MainLayout>
           <Footer />
