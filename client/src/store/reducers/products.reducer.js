@@ -18,9 +18,9 @@ export default function productsReducer(state={}, action) {
         case ADD_PRODUCT:
             return {...state, addProduct: true}
         case GET_PRODUCT_BY_ID:
-            return {...state, productToEdit: action.payload}
+            return {...state, productById: action.payload}
         case CLEAR_EDIT_PRODUCT:
-            return {...state, productToEdit: ''}
+            return {...state, productById: ''}
         default: 
             return state
     }

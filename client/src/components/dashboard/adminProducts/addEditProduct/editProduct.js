@@ -77,8 +77,8 @@ const EditProduct = (props) => {
     }, [dispatch], params.id)
 
     useEffect(() => {
-        if (products && products.productToEdit) {
-            setValues(getValuesToEdit(products.productToEdit))
+        if (products && products.productById) {
+            setValues(getValuesToEdit(products.productById))
         }
     }, [setValues, products])
 
