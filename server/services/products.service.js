@@ -102,12 +102,10 @@ const paginateProducts = async(req) => {
         
         // brand: keywords sometime return more than one brand
         if (req.body.brand && req.body.brand.length > 0) {
-            console.log('req.body.brand: ', req.body.brand)
 
             const newBrandArray = req.body.brand.map(item => (
                 mongoose.Types.ObjectId(item)
             ));
-            console.log('DUSTIN:newBrandArray: ', newBrandArray)
 
             
             aggQueryArray.push({

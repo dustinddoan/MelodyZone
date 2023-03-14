@@ -37,7 +37,7 @@ const SearchBar = ({handleSeach}) => {
             <form className="mt-3" onSubmit={formik.handleSubmit}>
                 <TextField 
                     style={{width: '100%'}}
-                    placeholder="Search somthing"
+                    placeholder="Search something"
                     name="keywords"
                     variant="outlined"
                     {...formik.getFieldProps('keywords')}
