@@ -7,7 +7,6 @@ const Card = (props) => {
     const handleAddToCart = () => {
         alert('Add to card')
     }
-    
     return (
        <div className={`card_item_wrapper ${props.grid ? 'grid_bars' : ''}`}>
             <div
@@ -21,13 +20,13 @@ const Card = (props) => {
                 <div className="tags">
                     <div className="brand">{props.item.brand.name}</div>
                     <div className="name">{props.item.model}</div>
-                    <div className="name">{props.item.price}</div>
+                    <div className="name">${props.item.price}</div>
                 </div>
                 
                 {props.grid?
                     <div className="description">
                         <p>
-                            {props.item.desciption}
+                            {props.item.description}
                         </p>
                     </div>
                 : null}

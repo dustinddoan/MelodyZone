@@ -68,12 +68,11 @@ const deleteProductById = async(id) => {
 
 const getAllProducts = async(req) => {
     try {
-    
         const products = await Product
         .find({})
         .populate('brand')
         .sort([
-            ['_id', req.body.order]
+            [req.query.sortBy, req.query.order]
         ])
         .limit(parseInt(req.query.limit))
 
@@ -156,7 +155,7 @@ const paginateProducts = async(req) => {
         let aggQuery = Product.aggregate(aggQueryArray);
         const options = {
             page: req.body.page,
-            limit: 2,
+            limit: 6,
             sort: {date: 'desc'}
         }
 
