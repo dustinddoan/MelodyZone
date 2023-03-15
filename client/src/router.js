@@ -15,6 +15,7 @@ import AddProduct from 'components/dashboard/adminProducts/addEditProduct/addPro
 import EditProduct from 'components/dashboard/adminProducts/addEditProduct/editProduct';
 import Shop from 'components/shop';
 import ProductDetail from 'components/product';
+import UserCart from 'components/dashboard/user/userCart';
 // Using Routes instead of Switch in react-router v6
 // You are using react-router-dom version 6, which replaced Switch with the Routes component
 
@@ -52,6 +53,7 @@ const Router = (props) => {
               <Route path="/dashboard/admin/add_product" element={<AuthGuard requiredToken={true}><AddProduct users={users} /></AuthGuard>} />
               <Route path="/dashboard/admin/edit_product/:id" element={<AuthGuard requiredToken={true}><EditProduct users={users} /></AuthGuard>} />
               <Route path="/dashboard/admin/admin_products" element={<AuthGuard requiredToken={true}><AdminProducts users={users} /></AuthGuard>} />
+              <Route path="/dashboard/user/user_cart" element={<AuthGuard requiredToken={true}><UserCart users={users} /></AuthGuard>} />
               <Route path="/dashboard" element={<AuthGuard requiredToken={true}><DashBoard users={users} /></AuthGuard>} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/product_detail/:id" element={<ProductDetail />} />

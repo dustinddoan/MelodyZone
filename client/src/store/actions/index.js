@@ -27,7 +27,7 @@ export const userSignOut = () => ({
 })
 
 export const addToCart = (item) => ({
-    type: addProduct,
+    type: ADD_TO_USER_CART,
     payload: item
 })
 

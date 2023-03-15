@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Header = ({ users, signOutUser }) => {
+    const [cart, setCart] = useState(0)
     
-    const userCart = users.cart;
+    useEffect(() => {
+        setCart(users.cart.length)
+    }, [cart])
+
 
     return (
         <header className='bck_b_light'>
@@ -19,7 +24,7 @@ const Header = ({ users, signOutUser }) => {
                         {users.auth ?
                             <>
                                 <div className='cart_link'>
-                                    <span>{users.cart.length}</span>
+                                    <span>{users.cart &&  users.cart.length}</span>
                                     <Link to='/dashboard/user/user_cart'>
                                         My cart
                                     </Link>
