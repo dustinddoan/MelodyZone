@@ -11,7 +11,6 @@ const ReduxStore = () => {
         appReducers,
         composeEnhancers(applyMiddleware(thunk))
     );
-
     return store
 }
 

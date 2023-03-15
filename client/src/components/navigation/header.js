@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = ({ users, signOutUser }) => {
+    
+    const userCart = users.cart;
+
     return (
         <header className='bck_b_light'>
             <div className='container'>
@@ -16,7 +19,7 @@ const Header = ({ users, signOutUser }) => {
                         {users.auth ?
                             <>
                                 <div className='cart_link'>
-                                    <span>0</span>
+                                    <span>{users.cart.length}</span>
                                     <Link to='/dashboard/user/user_cart'>
                                         My cart
                                     </Link>

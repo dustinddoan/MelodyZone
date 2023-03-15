@@ -1,12 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { renderCardImage, WavesButton } from "utils.js/tools";
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { useSelector, useDispatch} from "react-redux";
+import AddToCart from "utils.js/addToCart";
+import {userAddToCart} from 'store/actions/user.action'
 const Card = (props) => {
+    const user = useSelector(state => state.users)
+    const [modal, setModal] = useState(false)
+    const [errorType, setErrorType] = useState(null)
+    const dispatch = useDispatch()
 
-    const handleAddToCart = () => {
-        alert('Add to card')
+    const handleAddToCart = (item) => {
+
+        if (!user.auth) {
+            setModal(true)
+            setErrorType('auth')
+            return false;
+        } 
+
+        if (!user.data.verified) {
+            setModal(true)
+            setErrorType('verify')
+            return false
+        }
+
+        dispatch(userAddToCart(item))
     }
+
+    const handleClose = () => setModal(false)
+
     return (
        <div className={`card_item_wrapper ${props.grid ? 'grid_bars' : ''}`}>
             <div
@@ -37,7 +59,7 @@ const Card = (props) => {
                             type="default"
                             altClass="card_link"
                             title="View product"
-                            linkTo={`product_detail/${props.item._id}`}
+                            linkTo={`/product_detail/${props.item._id}`}
                             style={{
                                 fontWeight: 'bold'
                             }}
@@ -54,6 +76,11 @@ const Card = (props) => {
 
                 </div>
             </div>
+            <AddToCart 
+                modal={modal}
+                errorType={errorType}
+                handleClose={handleClose}
+            />
        </div>
     )
 }

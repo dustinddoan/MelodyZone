@@ -1,6 +1,8 @@
 import axios from "axios"
+import { useSelector } from "react-redux"
 import * as actions from './index'
 import { getTokenCookie, getAuthHeader, removeTokenCokie } from "utils.js/tools"
+import ReduxStore from "store"
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -58,5 +60,19 @@ export const userSignOut = () => {
         removeTokenCokie();
         dispatch(actions.userSignOut())
         dispatch(actions.successGlobal('Goodbye'))
+    }
+}
+
+
+export const userAddToCart = (item) => {
+    return async(dispatch, getState)=>{
+        try{
+            const cart = getState().users.cart;
+            cart.push(item)
+            dispatch(actions.addToCart(cart))
+            dispatch(actions.successGlobal(`${item.model} added to cart :)`))
+        } catch(error){
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
     }
 }

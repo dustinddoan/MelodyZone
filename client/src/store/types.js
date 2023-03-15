@@ -14,6 +14,7 @@ export const CLEAR_NOTIFICATION = 'clear_notification'
 // users
 export const AUTH_USER = 'auth_user'
 export const USER_SIGNOUT = 'user-signout'
+export const ADD_TO_USER_CART = 'add_to_user_cart'
 
 // brands
 export const GET_ALL_BRANDS = 'get_all_brands'

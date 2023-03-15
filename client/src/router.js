@@ -14,6 +14,7 @@ import AdminProducts from 'components/dashboard/adminProducts';
 import AddProduct from 'components/dashboard/adminProducts/addEditProduct/addProduct';
 import EditProduct from 'components/dashboard/adminProducts/addEditProduct/editProduct';
 import Shop from 'components/shop';
+import ProductDetail from 'components/product';
 // Using Routes instead of Switch in react-router v6
 // You are using react-router-dom version 6, which replaced Switch with the Routes component
 
@@ -53,6 +54,7 @@ const Router = (props) => {
               <Route path="/dashboard/admin/admin_products" element={<AuthGuard requiredToken={true}><AdminProducts users={users} /></AuthGuard>} />
               <Route path="/dashboard" element={<AuthGuard requiredToken={true}><DashBoard users={users} /></AuthGuard>} />
               <Route path="/shop" element={<Shop />} />
+              <Route path="/product_detail/:id" element={<ProductDetail />} />
               <Route path="/sign_in" element={<RegisterLogin />} />
               <Route path="/" element={<Home />} />
             </Routes>

@@ -11,7 +11,8 @@ import {
     GET_ALL_BRANDS,
     ADD_PRODUCT,
     GET_PRODUCT_BY_ID,
-    CLEAR_EDIT_PRODUCT
+    CLEAR_EDIT_PRODUCT,
+    ADD_TO_USER_CART
 
 } from "store/types";
 
@@ -23,6 +24,11 @@ export const userAuthenticate = (user) => ({
 
 export const userSignOut = () => ({
     type: USER_SIGNOUT
+})
+
+export const addToCart = (item) => ({
+    type: addProduct,
+    payload: item
 })
 
 
