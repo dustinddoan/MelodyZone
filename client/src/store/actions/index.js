@@ -12,7 +12,8 @@ import {
     ADD_PRODUCT,
     GET_PRODUCT_BY_ID,
     CLEAR_EDIT_PRODUCT,
-    ADD_TO_USER_CART
+    ADD_TO_USER_CART,
+    USER_PURCHASE_SUCCESS
 
 } from "store/types";
 
@@ -29,6 +30,11 @@ export const userSignOut = () => ({
 export const addToCart = (item) => ({
     type: ADD_TO_USER_CART,
     payload: item
+})
+
+export const userPurchaseSuccess = (data) => ({
+    type: USER_PURCHASE_SUCCESS,
+    payload: data
 })
 
 

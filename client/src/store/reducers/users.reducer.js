@@ -1,7 +1,8 @@
 import { 
     AUTH_USER,
     USER_SIGNOUT,
-    ADD_TO_USER_CART
+    ADD_TO_USER_CART,
+    USER_PURCHASE_SUCCESS
 } from "store/types"
 
 let DEFAULT_USER_STATE = {
@@ -39,6 +40,15 @@ export default function usersReducer(state=DEFAULT_USER_STATE, action) {
             return {
                 ...state,
                 cart: action.payload
+            }
+        case USER_PURCHASE_SUCCESS:
+            return {
+                ...state,
+                cart: [],
+                data: {
+                    ...state.data,
+                    history: action.payload.history
+                }
             }
         default: 
             return state

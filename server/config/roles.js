@@ -12,7 +12,8 @@ let grantsObject = {
         profile: allRights, // this is route /api/user/profile
         brand: allRights,
         product: allRights,
-        site: allRights
+        site: allRights,
+        transaction: allRights
     },
     user:{
         profile: {
@@ -20,7 +21,8 @@ let grantsObject = {
             'update:own': ['*']
         },
         brand: {'read:any': ['*']},
-        product: {'read:any': ['*']}
+        product: {'read:any': ['*']},
+        transaction: {'read:any': ['*'], 'read:any': ['*']}
 
     }
 }
