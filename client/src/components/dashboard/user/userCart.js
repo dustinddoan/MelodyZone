@@ -1,10 +1,9 @@
-import React, { useState, useEff } from "react";
+import React, { useState } from "react";
 import DashboardLayout from "components/hoc/dashboardLayout";
 import CartDetail from "./cartDetail";
-import { useDispatch, useSe, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, userPurchaseSuccess } from "store/actions/user.action";
 import Loader from "utils.js/loader";
-import { PayPalButton } from "react-paypal-button-v2";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
@@ -25,13 +24,39 @@ const UserCart = (props) => {
         return total
     }
 
+    const generateItemList = (cart) => {
+        let itemsList = [];
+        
+
+        for (let i = 0; i < cart.length; i ++) {
+            let item = {
+                name: "",
+                description: "",
+                sku: "WAVES123",
+                unit_amount: {
+                    currency_code: "USD",
+                    value: ""
+                },
+                quantity: "1"
+            }
+            item.name = cart[i].model
+            item.unit_amount.value = cart[i].price
+            console.log('item: ', item)
+            itemsList.push(item)
+        }
+
+        console.log(itemsList)
+
+        return itemsList
+    }
+
     const initialOptions = {
         "client-id": "Ab35B-mMFZC-Arlk7VWsx-yTUlH6XKT7cWrXP9N4g1qAoFbz9irm4SxB97vqYCPAVvRT2-RQUcDeDXVD",
         currency: "USD",
         intent: "capture",
     };
 
-    
+
     return (
         <DashboardLayout title="Your cart">
             {props.users.cart && props.users.cart.length > 0 ?
@@ -48,16 +73,25 @@ const UserCart = (props) => {
                         :
                         <div className="pp_button">
                             <PayPalScriptProvider options={initialOptions}>
-                                <PayPalButtons 
-                                    style={{ layout: "horizontal" }} 
+                                <PayPalButtons
+                                    style={{ layout: "horizontal" }}
                                     createOrder={(data, actions) => {
                                         return actions.order.create({
                                             purchase_units: [
                                                 {
                                                     amount: {
+                                                        currency_code: "USD",
                                                         value: calculateTotal(props.users.cart),
+                                                        breakdown: {
+                                                            item_total: {
+                                                                currency_code: "USD",
+                                                                value: calculateTotal(props.users.cart)
+                                                            }
+                                                        }
                                                     },
+                                                    items: generateItemList(props.users.cart)
                                                 }
+
                                             ],
                                         });
                                     }}

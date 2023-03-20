@@ -91,7 +91,6 @@ export const removeFromCart = (index) => {
 export const userPurchaseSuccess = (orderID) => {
     return async(dispatch)=>{
         try{
-            console.log('react orderID: ', orderID)
             const user = await axios.post(`/api/transaction`, {
                 orderID
             }, getAuthHeader())

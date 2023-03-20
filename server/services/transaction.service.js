@@ -13,8 +13,6 @@ const addTransaction = async(req) => {
    
 
     const {orderID} = req.body
-    console.log('service req orderID: ', orderID)
-
 
     let request = new paypal.orders.OrdersGetRequest(req.body.orderID);
     let order;
@@ -23,10 +21,9 @@ const addTransaction = async(req) => {
     try {
         order = await paypalClient.client.execute(request);
 
-        console.log('order: ', order )
 
 
-        console.log(`Order: ${JSON.stringify(order)}`);
+        // console.log(`Order: ${JSON.stringify(order)}`);
         const transaction = new Transaction({
             userID:req.user._id,
             userEmail:req.user.email,
@@ -34,11 +31,10 @@ const addTransaction = async(req) => {
             orderData:order.result,
         });
 
-        console.log('transaction: ', transaction )
 
 
         await transaction.save();
-        console.log(`Capture: ${JSON.stringify(transaction)}`);
+        // console.log(`Capture: ${JSON.stringify(transaction)}`);
         // console.log('detail: ', transaction.orderData[0].purchase_units)
         
         
