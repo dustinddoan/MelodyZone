@@ -5,12 +5,14 @@ const {Strategy: JwtStrategy, ExtractJwt} = require('passport-jwt');
 
 const jwtOptions = {
     secretOrKey: process.env.DB_SECRET,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('jwt')
 };
 
-const jwtVeirfy = async(payload, done) => {
+
+const jwtVerify = async(payload, done) => {
     try {
         const user = await User.findById(payload.sub);
+
         if (!user) {
             return done(null, false);
         }
@@ -20,7 +22,7 @@ const jwtVeirfy = async(payload, done) => {
     }
 }
 
-const jwtStrategy = new JwtStrategy(jwtOptions, jwtVeirfy);
+const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
 
 module.exports = ({
     jwtStrategy

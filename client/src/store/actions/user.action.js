@@ -96,7 +96,7 @@ export const userPurchaseSuccess = (orderID) => {
             }, getAuthHeader())
 
 
-            dispatch(actions.successGlobal)
+            dispatch(actions.successGlobal())
             dispatch(actions.userPurchaseSuccess(user.data))
         } catch(error){
             dispatch(actions.errorGlobal(error.response.data.message))

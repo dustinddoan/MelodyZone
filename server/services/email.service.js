@@ -16,7 +16,6 @@ let transponder = nodemailer.createTransport({
 const registerEmail = async(userEmail, user) => {
     try {
         const emailToken = user.generateRegisterToken();
-
         let mailGenerator = new Mailgen({
             theme: "default",
             product: {
@@ -33,13 +32,15 @@ const registerEmail = async(userEmail, user) => {
                     instructions: 'To get started with eBike, please click here:',
                     button: {
                         color: '#22BC66', // Optional action button color
-                        text: 'Confirm your account',
-                        link: `${process.env.SITE_DOMAIN}verification?t=${emailToken}`
+                        text: 'Confirm your accounts',
+                        link: `${process.env.SITE_DOMAIN}verify/${emailToken}`
                     }
                 },
                 outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
             }
         };
+
+        console.log('LINK: ', email.body.action.button.link)
 
         let emailBody = mailGenerator.generate(email);
         let message = {
@@ -48,8 +49,6 @@ const registerEmail = async(userEmail, user) => {
             subject: 'Welcome to eBike',
             html: emailBody
         }
-        // console.log('DUSTIN message:', message)
-
 
         await transponder.sendMail(message);
         return true;

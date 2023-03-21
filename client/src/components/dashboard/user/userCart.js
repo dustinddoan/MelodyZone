@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardLayout from "components/hoc/dashboardLayout";
 import CartDetail from "./cartDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, userPurchaseSuccess } from "store/actions/user.action";
 import Loader from "utils.js/loader";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
+import { useNavigate } from "react-router-dom";
 
 const UserCart = (props) => {
     const [loading, setLoading] = useState(false)
     const notifications = useSelector(state => state.notifications)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleRemove = (index) => {
         dispatch(removeFromCart(index))
@@ -41,14 +42,21 @@ const UserCart = (props) => {
             }
             item.name = cart[i].model
             item.unit_amount.value = cart[i].price
-            console.log('item: ', item)
             itemsList.push(item)
         }
 
-        console.log(itemsList)
 
         return itemsList
     }
+
+    useEffect(() => {
+        if (notifications && notifications.success) {
+            navigate('/dashboard')
+        }
+        if (notifications && notifications.error) {
+            setLoading(false)
+        }
+    }, [navigate, notifications])
 
     const initialOptions = {
         "client-id": "Ab35B-mMFZC-Arlk7VWsx-yTUlH6XKT7cWrXP9N4g1qAoFbz9irm4SxB97vqYCPAVvRT2-RQUcDeDXVD",
@@ -97,7 +105,6 @@ const UserCart = (props) => {
                                     }}
                                     onApprove={(data, actions) => {
                                         return actions.order.capture().then((details) => {
-                                            const name = details.payer.name.given_name;
                                             dispatch(userPurchaseSuccess(details.id))
                                             setLoading(true)
                                         });

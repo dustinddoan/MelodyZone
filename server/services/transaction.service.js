@@ -35,13 +35,13 @@ const addTransaction = async(req) => {
 
         await transaction.save();
         // console.log(`Capture: ${JSON.stringify(transaction)}`);
-        // console.log('detail: ', transaction.orderData[0].purchase_units)
+        // console.log('detail: ', transaction.orderData[0].purchase_units[0].items)
         
         
         const user = await User.findOneAndUpdate(
             {_id:req.user._id},
             { "$push":{
-                history:[
+                history:
                     {
                         transactionId:transaction._id,
                         date: transaction.date,
@@ -49,10 +49,11 @@ const addTransaction = async(req) => {
                         amount: transaction.orderData[0].purchase_units[0].amount.value,
                         items:  transaction.orderData[0].purchase_units[0].items,
                     }
-                ]
+                
             }},
             { new:true }
         )
+            // console.log('user history: ', user.history)
 
         /// error
         return user;
