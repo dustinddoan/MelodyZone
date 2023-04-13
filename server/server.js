@@ -1,3 +1,6 @@
+
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,7 +11,6 @@ const { handleError, convertToApiError } = require('./middleware/apiError');
 const passport = require('passport');
 const { jwtStrategy } = require('./middleware/passport');
 
-require('dotenv').config();
 
 // mongodb+srv://<username>:<password>@cluster0.l7iu4hg.mongodb.net/?retryWrites=true&w=majority
 const mongoUri=`mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`
