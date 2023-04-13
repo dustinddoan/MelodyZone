@@ -3,7 +3,7 @@ const { ApiError } = require('../middleware/apiError');
 const httpStatus = require('http-status');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2
-require('dotenv').config('../.env');
+require('dotenv').config();
 
 cloudinary.config({
     cloud_name:'dtboetp4o',

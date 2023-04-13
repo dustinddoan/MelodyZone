@@ -1,5 +1,5 @@
 const paypal = require('@paypal/checkout-server-sdk');
-require('dotenv').config('../.env');
+require('dotenv').config();
 
 let clientId = process.env.PAYPAL_CLIENT_ID
 

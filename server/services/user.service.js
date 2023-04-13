@@ -2,7 +2,7 @@ const {User} = require('../models/user');
 const { ApiError } = require('../middleware/apiError');
 const httpStatus = require('http-status')
 const jwt = require('jsonwebtoken');
-require('dotenv').config('../.env');
+require('dotenv').config();
 
 const findUserByEmail = async(email) => {
     return await User.findOne({email});

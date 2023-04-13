@@ -1,5 +1,5 @@
 const {User} = require('../models/user');
-require('dotenv').config('../.env');
+require('dotenv').config();
 
 const {Strategy: JwtStrategy, ExtractJwt} = require('passport-jwt');
 
