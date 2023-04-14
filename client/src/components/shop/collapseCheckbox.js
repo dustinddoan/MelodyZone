@@ -16,7 +16,7 @@ const CollapseCheckbox = (props) => {
     const handleCollapseOpen = () => setOpen(!open);
 
     const renderList = () => (
-        props.list ?
+        props.list && Array.isArray(props.list)?
             props.list.map((value)=>(
                 <ListItem key={value._id}>
                     <ListItemText primary={value.name}/>

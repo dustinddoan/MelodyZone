@@ -20,7 +20,7 @@ const PicViewer = ({formik, deletePic}) => {
 
     return (
         <>
-            { formik.values && formik.values.images ?
+            { formik.values && formik.values.images && Array.isArray(formik.values.images)?
                 formik.values.images.map((item, i) => (
                     <div 
                         className="pic_block"

@@ -32,7 +32,7 @@ const ProductsTable = ({prods, prev, next, removeModal, handleClose, handleModal
                             </tr>
                         </thead>
                         <tbody>
-                            { prods.docs.map((item) => (
+                            { Array.isArray(prods.docs) && prods.docs.map((item) => (
                                 <tr key={item._id}>
                                     <td><Moment to={item.date}></Moment></td>
                                     <td>{item.model}</td>

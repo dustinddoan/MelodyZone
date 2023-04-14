@@ -3,7 +3,7 @@ import { renderCardImage } from "utils.js/tools";
 
 const CartDetail = ({products, removeItem}) => {
     const renderItems = () => (
-        products ?
+        products && Array.isArray(products)?
             products.map((product, index) => (
                 <div className="user_product_block" key={`${product._id}${index}`}>
                     <div className="item">

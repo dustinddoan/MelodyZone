@@ -136,7 +136,7 @@ const AddProduct = (props) => {
                                     <MenuItem value="">
                                         <em>None</em>
                                     </MenuItem>
-                                    {brands ?
+                                    {brands && Array.isArray(brands) ?
                                         brands.map((item) => (
                                             <MenuItem value={item._id} key={item._id}>
                                                 {item.name}

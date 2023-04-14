@@ -15,7 +15,7 @@ const Carousel = ({ items }) => {
     };
 
     const generateSlides = () => (
-        items ?
+        items && Array.isArray(items) ?
             items.map((item, i) => (
                 <div key={i}>
                     <div className="featured_image"

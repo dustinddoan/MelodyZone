@@ -2,9 +2,8 @@ import React from "react";
 import Card from "./card";
 
 const CardBlock = ({items, title, shop, grid}) => {
-
     const renderCards = () => (
-        items ?
+        items && Array.isArray(items) ?
             items.map((item) => (
                 <Card 
                     key={item._id}

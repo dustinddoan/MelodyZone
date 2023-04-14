@@ -14,6 +14,7 @@ export const  productsBySort = ({limit, sortBy, order, where}) => {
                 }
                
             })
+
             switch(where) {
                 case 'bySold':
                     // console.log('Dispatch actions.productsBySold = type PROD_BY_SOLD')
